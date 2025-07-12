@@ -11,13 +11,18 @@ public class CameraController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.OnProgressChangedEvent += OnProgressChangedCallback;
-        OnProgressChangedCallback(0);
+        GameManager.OnProgressValueChangedEvent += OnProgressValueChangedCallback;
+        OnProgressValueChangedCallback(0);
     }
 
-    private void OnProgressChangedCallback(int progress)
+    void OnDestroy()
     {
-        _curWaypoint = _waypoints[GameManager.Progress % _waypoints.Length];
+        GameManager.OnProgressValueChangedEvent -= OnProgressValueChangedCallback;
+    }
+
+    private void OnProgressValueChangedCallback(int progress)
+    {
+        _curWaypoint = _waypoints[progress % _waypoints.Length];
         _camera.transform.DOMove(_curWaypoint.position, 1f);
         _camera.transform.DORotate(_curWaypoint.rotation.eulerAngles, 1f);
     }
