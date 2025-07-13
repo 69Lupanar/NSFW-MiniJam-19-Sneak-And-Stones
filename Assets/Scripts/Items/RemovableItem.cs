@@ -3,17 +3,38 @@ using UnityEngine;
 /// <summary>
 /// Defines a removable item on the girls' body (cloth, jewelry)
 /// </summary>
-public class RemovableItem : MonoBehaviour
+public abstract class RemovableItem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    #region Variables
+
+    /// <summary>
+    /// The default position of the item
+    /// </summary>
+    public Vector3 StartPos { get; private set; }
+
+    #endregion
+
+    #region Unity
+
     void Start()
     {
-
+        StartPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-
+        ItemRemovalManager.OnItemClickedEvent?.Invoke(this);
     }
+
+    private void OnMouseDrag()
+    {
+        ItemRemovalManager.OnItemDraggedEvent?.Invoke(this);
+    }
+
+    private void OnMouseUp()
+    {
+        ItemRemovalManager.OnItemReleasedEvent?.Invoke(this);
+    }
+
+    #endregion
 }

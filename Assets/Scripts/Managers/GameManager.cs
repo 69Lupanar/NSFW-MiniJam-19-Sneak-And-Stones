@@ -143,10 +143,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RiseProgress();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    RiseProgress();
+        //}
 
         if (IsAwake)
         {
@@ -178,6 +178,16 @@ public class GameManager : MonoBehaviour
     public void ResetSleepSpeedFactor()
     {
         this._sleepSpeedFactor = 1f;
+    }
+
+    /// <summary>
+    /// Gère la défaite du joueur
+    /// </summary>
+    public void LoseGame()
+    {
+        GameOver = true;
+        OnDefeatEvent?.Invoke();
+        print("You lose!");
     }
 
     #endregion
@@ -238,9 +248,7 @@ public class GameManager : MonoBehaviour
 
         if (_curTimer > _gameDuration)
         {
-            GameOver = true;
-            OnDefeatEvent?.Invoke();
-            print("You lose!");
+            LoseGame();
         }
     }
 

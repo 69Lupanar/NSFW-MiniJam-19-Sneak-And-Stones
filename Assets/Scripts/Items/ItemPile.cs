@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// List of items to remove for a given level of game progression.
-/// Regroups both draggable items and clickable items
+/// List of items to remove in a certain order for a given level of game progression.
+/// Regroups both draggable items and clickable items.
+/// If an item can be removed at any time, it is alone in its pile.
 /// </summary>
 [Serializable]
-public class RemovableItems
+public class ItemPile
 {
     /// <summary>
     /// The items to remove. They will be removed in the order
