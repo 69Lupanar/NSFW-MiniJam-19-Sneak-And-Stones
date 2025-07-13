@@ -14,6 +14,16 @@ public class GameManager : MonoBehaviour
     public static Action OnSleepWarningEvent;
 
     /// <summary>
+    /// Called when the monster enters the sleep phase
+    /// </summary>
+    public static Action OnEnterSleepEvent;
+
+    /// <summary>
+    /// Called when the monster enters the awake phase
+    /// </summary>
+    public static Action OnEnterAwakeEvent;
+
+    /// <summary>
     /// When the player wins
     /// </summary>
     public static Action OnVictoryEvent;
@@ -164,17 +174,26 @@ public class GameManager : MonoBehaviour
 
     #region Public methods
 
+    /// <summary>
+    /// Increments the progress meter
+    /// </summary>
     public void RiseProgress()
     {
         _progress++;
         OnProgressValueChangedEvent?.Invoke(_progress);
     }
 
+    /// <summary>
+    /// Set the sleep progression speed
+    /// </summary>
     public void SetSleepSpeedFactor(float value)
     {
         this._sleepSpeedFactor = value;
     }
 
+    /// <summary>
+    /// Resets the sleep progression speed to 1
+    /// </summary>
     public void ResetSleepSpeedFactor()
     {
         this._sleepSpeedFactor = 1f;
@@ -188,6 +207,15 @@ public class GameManager : MonoBehaviour
         GameOver = true;
         OnDefeatEvent?.Invoke();
         print("You lose!");
+    }
+
+    /// <summary>
+    /// Returns to the sleep phase
+    /// </summary>
+    public void ForceSleep()
+    {
+        IsAwake = false;
+        OnEnterSleepEvent?.Invoke();
     }
 
     #endregion
@@ -205,6 +233,7 @@ public class GameManager : MonoBehaviour
         {
             IsAwake = false;
             _curAwake = 0f;
+            OnEnterSleepEvent?.Invoke();
         }
 
         _curAwake += Time.deltaTime;
@@ -225,6 +254,7 @@ public class GameManager : MonoBehaviour
             _curRandomSleepLimit += rand;
             _curSleep = 0f;
             IsAwake = true;
+            OnEnterAwakeEvent?.Invoke();
         }
 
         _curSleep += Time.deltaTime * _sleepSpeedFactor;
