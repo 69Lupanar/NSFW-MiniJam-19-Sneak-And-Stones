@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clips:
   - _clip: {fileID: 8300000, guid: a37af6cc43ed35147b7e5de420091900, type: 3}
-    _defaultVolume: 0.5
+    _defaultVolume: 0.2
     _loop: 1
   - _clip: {fileID: 8300000, guid: 1cdf455c03a4c1d429fa1b72af409a0d, type: 3}
     _defaultVolume: 0.5
@@ -76,5 +76,14 @@ MonoBehaviour:
     _defaultVolume: 0.5
     _loop: 0
   - _clip: {fileID: 8300000, guid: d469111e9155e4a438631dab86eaa4a5, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: 112c5e4ed77479f429ecefaad02ebe54, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: 1d22818979e23484daba20635cefc3d0, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: 9fcf52fc4599d794bbe0e0dd55c226b6, type: 3}
     _defaultVolume: 0.5
     _loop: 0
