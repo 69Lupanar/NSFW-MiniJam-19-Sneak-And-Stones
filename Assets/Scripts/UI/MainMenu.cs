@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     [SerializeField] private string _gameSceneName;
 
+    /// <summary>
+    /// Manages the transitions between scenes
+    /// </summary>
+    SceneFader _sceneFader;
+
     #endregion
 
     #region Unity
@@ -31,6 +36,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         _menuAnim.Play(_startAnim.name);
+        _sceneFader = FindAnyObjectByType<SceneFader>();
     }
 
     #endregion
@@ -42,9 +48,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnPlayBtn()
     {
-        // TODO : SceneManager for fade-in transitions
-
-        SceneManager.LoadSceneAsync(_gameSceneName, LoadSceneMode.Single);
+        _sceneFader.FadeOut(1f, _sceneFader.VictoryFadeOutGradient, () => SceneManager.LoadSceneAsync(_gameSceneName, LoadSceneMode.Single));
     }
 
     /// <summary>

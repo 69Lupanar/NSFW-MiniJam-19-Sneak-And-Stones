@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Manages the game state & player progression
@@ -73,6 +74,16 @@ public class GameManager : MonoBehaviour
     public static bool IsAwake { get; private set; }
 
     /// <summary>
+    /// Scene to load on defeat
+    /// </summary>
+    [SerializeField] private string _gameOverSceneName;
+
+    /// <summary>
+    /// Scene to load on victory
+    /// </summary>
+    [SerializeField] private string _victorySceneName;
+
+    /// <summary>
     /// The number of body parts to expose to win
     /// </summary>
     [SerializeField] private int _progressToWin = 6;
@@ -118,6 +129,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     float _sleepSpeedFactor = 1f;
 
+    /// <summary>
+    /// Manages the transitions between scenes
+    /// </summary>
+    SceneFader _sceneFader;
 
     #endregion
 
@@ -126,6 +141,8 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _sceneFader = FindAnyObjectByType<SceneFader>();
+
         float rand = UnityEngine.Random.Range(-_randomSleepDurationOffset, _randomSleepDurationOffset);
         _curRandomSleepLimit = Mathf.Lerp(_minMaxSleepInterval.x, _minMaxSleepInterval.y, _curTimer / _gameDuration);
         _curRandomSleepLimit += rand;
@@ -200,13 +217,14 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gère la défaite du joueur
+    /// Manages the player's defeat
     /// </summary>
     public void LoseGame()
     {
         GameOver = true;
         OnDefeatEvent?.Invoke();
         print("You lose!");
+        _sceneFader.FadeOut(1f, _sceneFader.DefeatFadeOutGradient, () => SceneManager.LoadSceneAsync(_gameOverSceneName, LoadSceneMode.Single));
     }
 
     /// <summary>
@@ -221,6 +239,17 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Private methods
+
+    /// <summary>
+    /// Manages the player's victory
+    /// </summary>
+    private void WinGame()
+    {
+        GameWon = true;
+        OnVictoryEvent?.Invoke();
+        print("You win!");
+        _sceneFader.FadeOut(1f, _sceneFader.VictoryFadeOutGradient, () => SceneManager.LoadSceneAsync(_victorySceneName, LoadSceneMode.Single));
+    }
 
     /// <summary>
     /// Fills the awake meter
@@ -295,9 +324,7 @@ public class GameManager : MonoBehaviour
 
         if (progress == _progressToWin)
         {
-            GameWon = true;
-            OnVictoryEvent?.Invoke();
-            print("You win!");
+            WinGame();
         }
     }
 
