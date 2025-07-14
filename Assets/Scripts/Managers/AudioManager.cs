@@ -33,6 +33,8 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     List<AudioSource> _activeAudioSources;
 
+    Stack<int> _muteSourcesIndices = new();
+
     #endregion
 
     #region Unity
@@ -68,26 +70,37 @@ public class AudioManager : MonoBehaviour
 
         // Tracks all active AudioSources and disables the ones that have finished playing
 
-        int curIndex = 0;
-        while (curIndex < _activeAudioSources.Count)
+        foreach (AudioSource source in _activeAudioSources)
         {
-            AudioSource source = _activeAudioSources[curIndex];
-
             if (!source.isPlaying)
             {
                 source.Stop();
                 source.clip = null;
-                ReleaseAudioSource(source);
-                continue;
+                _muteSourcesIndices.Push(_activeAudioSources.IndexOf(source));
             }
-
-            ++curIndex;
         }
+
+        while (_muteSourcesIndices.TryPop(out int index))
+        {
+            AudioSource source = _activeAudioSources[index];
+            ReleaseAudioSource(source);
+        }
+
+        _muteSourcesIndices.Clear();
     }
 
     #endregion
 
     #region Public methods
+
+    /// <summary>
+    /// Plays an AudioClip, even if not registered in the AudioManager
+    /// (UnityEvent version)
+    /// </summary>
+    public void Play(AudioClip clip)
+    {
+        Play(clip, null, null);
+    }
 
     /// <summary>
     /// Plays an AudioClip, even if not registered in the AudioManager
@@ -130,8 +143,9 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void Stop(AudioClip clip)
     {
-        foreach (AudioSource source in _activeAudioSources)
+        for (int i = _activeAudioSources.Count - 1; i >= 0; --i)
         {
+            AudioSource source = _activeAudioSources[i];
             if (source.clip == clip)
             {
                 source.Stop();
@@ -147,8 +161,9 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void StopAll()
     {
-        foreach (AudioSource source in _activeAudioSources)
+        for (int i = _activeAudioSources.Count - 1; i >= 0; --i)
         {
+            AudioSource source = _activeAudioSources[i];
             source.Stop();
             source.clip = null;
             ReleaseAudioSource(source);

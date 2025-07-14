@@ -14,6 +14,11 @@ public class GameOverMenu : MonoBehaviour
     [SerializeField] private string _mainMenuName;
 
     /// <summary>
+    /// Background music clip
+    /// </summary>
+    [SerializeField] private AudioClip _bgmClip;
+
+    /// <summary>
     /// Manages the transitions between scenes
     /// </summary>
     SceneFader _sceneFader;
@@ -25,6 +30,8 @@ public class GameOverMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play(_bgmClip);
         _sceneFader = FindAnyObjectByType<SceneFader>();
     }
 

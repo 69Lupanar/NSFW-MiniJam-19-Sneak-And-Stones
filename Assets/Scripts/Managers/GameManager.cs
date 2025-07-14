@@ -221,10 +221,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoseGame()
     {
-        GameOver = true;
-        OnDefeatEvent?.Invoke();
-        print("You lose!");
-        _sceneFader.FadeOut(1f, _sceneFader.DefeatFadeOutGradient, () => SceneManager.LoadSceneAsync(_gameOverSceneName, LoadSceneMode.Single));
+        if (!GameOver)
+        {
+            GameOver = true;
+            OnDefeatEvent?.Invoke();
+            print("You lose!");
+            _sceneFader.FadeOut(1f, _sceneFader.DefeatFadeOutGradient, () => SceneManager.LoadSceneAsync(_gameOverSceneName, LoadSceneMode.Single));
+        }
     }
 
     /// <summary>
@@ -245,10 +248,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void WinGame()
     {
-        GameWon = true;
-        OnVictoryEvent?.Invoke();
-        print("You win!");
-        _sceneFader.FadeOut(1f, _sceneFader.VictoryFadeOutGradient, () => SceneManager.LoadSceneAsync(_victorySceneName, LoadSceneMode.Single));
+        if (!GameWon)
+        {
+            GameWon = true;
+            OnVictoryEvent?.Invoke();
+            print("You win!");
+            _sceneFader.FadeOut(1f, _sceneFader.VictoryFadeOutGradient, () => SceneManager.LoadSceneAsync(_victorySceneName, LoadSceneMode.Single));
+        }
     }
 
     /// <summary>
