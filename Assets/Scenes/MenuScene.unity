@@ -569,7 +569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 910, y: -484.80246}
+  m_AnchoredPosition: {x: 910, y: -469.9525}
   m_SizeDelta: {x: 1820, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &372957309
@@ -606,12 +606,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You have a limited time to expose each body part of Medusa before she
-    wakes up. \nClick on one of her garnments and drag it to remove it. Each body
-    part has a list of items you have to remove in the correct order (For example,
-    the jewels, then the toga, then the underwears.)\nDon't be too greedy, as she
-    has a habit of shuffling around in her sleep! If she wakes up, be quiet and stop
-    what you're doing."
+  m_text: "<b>(WARNING: This game uses sound for its gameplay!)</b>\nYou have a limited
+    time to expose each body part of Medusa before she wakes up. \nClick on one of
+    her garnments and drag it to remove it. Each body part has a list of items you
+    have to remove in the correct order (For example, the jewels, then the toga,
+    then the underwears.)\nDon't be too greedy, as she has a habit of shuffling around
+    in her sleep! If she wakes up, be quiet and stop what you're doing."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -1324,7 +1324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 910, y: -144.80249}
+  m_AnchoredPosition: {x: 910, y: -129.95251}
   m_SizeDelta: {x: 1820, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1065335509
@@ -1375,8 +1375,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294082522
+  m_fontColor: {r: 0.85667056, g: 0.49860448, b: 0.94716984, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
