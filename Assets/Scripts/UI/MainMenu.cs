@@ -24,6 +24,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private string _gameSceneName;
 
     /// <summary>
+    /// Background music clip
+    /// </summary>
+    [SerializeField] private AudioClip _bgmClip;
+
+    /// <summary>
     /// Manages the transitions between scenes
     /// </summary>
     SceneFader _sceneFader;
@@ -35,6 +40,8 @@ public class MainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play(_bgmClip);
         _menuAnim.Play(_startAnim.name);
         _sceneFader = FindAnyObjectByType<SceneFader>();
     }
@@ -48,7 +55,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnPlayBtn()
     {
-        _sceneFader.FadeOut(1f, _sceneFader.VictoryFadeOutGradient, () => SceneManager.LoadSceneAsync(_gameSceneName, LoadSceneMode.Single));
+        _sceneFader.FadeOut(1f, _sceneFader.DefaultFadeOutGradient, () => SceneManager.LoadSceneAsync(_gameSceneName, LoadSceneMode.Single));
     }
 
     /// <summary>

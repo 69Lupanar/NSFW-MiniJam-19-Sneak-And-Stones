@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2252757099499669719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6740751615822774224}
+  - component: {fileID: 7508497506346556178}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6740751615822774224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252757099499669719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7508497506346556178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2252757099499669719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ea945c46185654f981214866e51da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clips:
+  - _clip: {fileID: 8300000, guid: a37af6cc43ed35147b7e5de420091900, type: 3}
+    _defaultVolume: 0.5
+    _loop: 1
+  - _clip: {fileID: 8300000, guid: 1cdf455c03a4c1d429fa1b72af409a0d, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: d88c49a9778c7084688d278106ddb538, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: b4ce72b5e7bf67e428967304e73d38fa, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: 3916ba0599e0a8c41a5999e19e0a4885, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: 4038d7d55d1548e498e33e81811556a7, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: fe4d27ec6085c9c429980453933145fd, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: c1e151df923b6404b9292f2b6266d62d, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: b714a95f199df1a4f9f9594741c3cb2c, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: a1a2933c78fcaa1489fe40b62a6756d7, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
+  - _clip: {fileID: 8300000, guid: d469111e9155e4a438631dab86eaa4a5, type: 3}
+    _defaultVolume: 0.5
+    _loop: 0
