@@ -56,6 +56,35 @@ public class AudioManager : MonoBehaviour
         _activeAudioSources = new List<AudioSource>(1);
     }
 
+    private void Update()
+    {
+        // If the game isn't focused, the source will stop playing
+        // and will be removed accidentally
+
+        if (!Application.isFocused)
+        {
+            return;
+        }
+
+        // Tracks all active AudioSources and disables the ones that have finished playing
+
+        int curIndex = 0;
+        while (curIndex < _activeAudioSources.Count)
+        {
+            AudioSource source = _activeAudioSources[curIndex];
+
+            if (!source.isPlaying)
+            {
+                source.Stop();
+                source.clip = null;
+                ReleaseAudioSource(source);
+                continue;
+            }
+
+            ++curIndex;
+        }
+    }
+
     #endregion
 
     #region Public methods
@@ -147,6 +176,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             source = gameObject.AddComponent<AudioSource>();
+            source.playOnAwake = false;
         }
 
         _activeAudioSources.Add(source);
