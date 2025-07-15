@@ -48,6 +48,9 @@ MonoBehaviour:
   - _clip: {fileID: 8300000, guid: a37af6cc43ed35147b7e5de420091900, type: 3}
     _defaultVolume: 0.2
     _loop: 1
+  - _clip: {fileID: 8300000, guid: 816968e700615b948b3ec54906715e83, type: 3}
+    _defaultVolume: 0.2
+    _loop: 1
   - _clip: {fileID: 8300000, guid: 1cdf455c03a4c1d429fa1b72af409a0d, type: 3}
     _defaultVolume: 0.5
     _loop: 0
