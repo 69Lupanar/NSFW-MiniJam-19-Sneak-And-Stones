@@ -69,14 +69,12 @@ public class AnimationManager : MonoBehaviour
         AnimationManager.IsTransitioning = false;
         GameManager.OnSleepWarningEvent += OnSleepWarningCallback;
         GameManager.OnEnterAwakeEvent += OnEnterAwakeCallback;
-        //GameManager.OnEnterSleepEvent += OnEnterSleepCallback;
     }
 
     private void OnDestroy()
     {
         GameManager.OnSleepWarningEvent -= OnSleepWarningCallback;
         GameManager.OnEnterAwakeEvent -= OnEnterAwakeCallback;
-        //GameManager.OnEnterSleepEvent -= OnEnterSleepCallback;
     }
 
     #endregion
@@ -125,14 +123,6 @@ public class AnimationManager : MonoBehaviour
             _characterAnim.Play(_warningClip.name);
         }
     }
-
-    ///// <summary>
-    ///// Called when the monster enters the sleep phase
-    ///// </summary>
-    //private void OnEnterSleepCallback()
-    //{
-    //    // TODO : Play idle pose
-    //}
 
     /// <summary>
     /// Called when the monster enters the awake phase

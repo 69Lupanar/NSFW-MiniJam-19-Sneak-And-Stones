@@ -49,11 +49,6 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(Instance.gameObject);
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
         _inactiveAudioSources = new List<AudioSource>(1);
         _activeAudioSources = new List<AudioSource>(1);
     }
@@ -107,6 +102,12 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void Play(AudioClip clip, float? volume = null, bool? loop = null)
     {
+        if (clip == null)
+        {
+            Debug.LogError("Error in AudioManager : The clip you attempted to play is null");
+            return;
+        }
+
         bool contains = false;
         foreach (AudioClipData data in _clips)
         {

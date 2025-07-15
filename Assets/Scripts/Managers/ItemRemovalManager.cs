@@ -20,6 +20,11 @@ public class ItemRemovalManager : MonoBehaviour
     /// </summary>
     public static Action<RemovableItem> OnItemReleasedEvent;
 
+    /// <summary>
+    /// Called when the player removes an item
+    /// </summary>
+    public static Action<RemovableItem> OnItemRemovedEvent;
+
     #endregion
 
     #region Variables
@@ -113,6 +118,8 @@ public class ItemRemovalManager : MonoBehaviour
                             {
                                 _gameManager.RiseProgress();
                             }
+
+                            OnItemRemovedEvent?.Invoke(item);
                         }
                         return;
 
@@ -182,6 +189,8 @@ public class ItemRemovalManager : MonoBehaviour
                     _gameManager.RiseProgress();
                     OnItemReleasedCallback(item);
                 }
+
+                OnItemRemovedEvent?.Invoke(item);
             }
         }
     }
@@ -217,7 +226,6 @@ public class ItemRemovalManager : MonoBehaviour
 
         return pile.Items[0] == item;
     }
-
 
     /// <summary>
     /// Removes the item from the pile if it's the first item on top
