@@ -3678,7 +3678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bgmClip: {fileID: 8300000, guid: 816968e700615b948b3ec54906715e83, type: 3}
-  _jewelryRemovedClip: {fileID: 8300000, guid: 1d22818979e23484daba20635cefc3d0, type: 3}
+  _jewelryRemovedClip: {fileID: 8300000, guid: 8b8e88706f0df7b4e84a21aa270c7a82, type: 3}
   _clothRemovedClip: {fileID: 8300000, guid: 1d22818979e23484daba20635cefc3d0, type: 3}
   _defeatClip: {fileID: 8300000, guid: 9fcf52fc4599d794bbe0e0dd55c226b6, type: 3}
   _victoryClip: {fileID: 8300000, guid: b4ce72b5e7bf67e428967304e73d38fa, type: 3}
