@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenuName: MenuScene
-  _bgmClip: {fileID: 8300000, guid: a37af6cc43ed35147b7e5de420091900, type: 3}
+  _bgmClip: {fileID: 8300000, guid: aaa95bdb2b714a34291e449c728d0a13, type: 3}
 --- !u!1 &1505097596
 GameObject:
   m_ObjectHideFlags: 0
