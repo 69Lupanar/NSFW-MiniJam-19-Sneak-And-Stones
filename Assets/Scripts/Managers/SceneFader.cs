@@ -47,6 +47,7 @@ public class SceneFader : MonoBehaviour
     public void FadeIn(float fadeDuration, Gradient colorGradient)
     {
         _fadeImg.DOGradientColor(colorGradient, fadeDuration);
+        _fadeImg.color = new Color(_fadeImg.color.r, _fadeImg.color.g, _fadeImg.color.b, 1f);
         _fadeImg.DOFade(0f, fadeDuration);
     }
 
@@ -56,6 +57,7 @@ public class SceneFader : MonoBehaviour
     public void FadeOut(float fadeDuration, Gradient colorGradient, Action onFadeCompleteCallback)
     {
         _fadeImg.DOGradientColor(colorGradient, fadeDuration).OnComplete(() => onFadeCompleteCallback?.Invoke());
+        _fadeImg.color = new Color(_fadeImg.color.r, _fadeImg.color.g, _fadeImg.color.b, 0f);
         _fadeImg.DOFade(1f, fadeDuration);
     }
 

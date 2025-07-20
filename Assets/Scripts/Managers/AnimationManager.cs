@@ -18,6 +18,11 @@ public class AnimationManager : MonoBehaviour
     [SerializeField] private Animator _characterAnim;
 
     /// <summary>
+    /// To hide the transitions
+    /// </summary>
+    [SerializeField] private SceneFader _sceneFader;
+
+    /// <summary>
     /// Monster's default idle animation at the start of the game
     /// </summary>
     [SerializeField] private AnimationClip _defaultPose;
@@ -69,12 +74,14 @@ public class AnimationManager : MonoBehaviour
         AnimationManager.IsTransitioning = false;
         GameManager.OnSleepWarningEvent += OnSleepWarningCallback;
         GameManager.OnEnterAwakeEvent += OnEnterAwakeCallback;
+        GameManager.OnEnterSleepEvent += OnEnterSleepCallback;
     }
 
     private void OnDestroy()
     {
         GameManager.OnSleepWarningEvent -= OnSleepWarningCallback;
         GameManager.OnEnterAwakeEvent -= OnEnterAwakeCallback;
+        GameManager.OnEnterSleepEvent -= OnEnterSleepCallback;
     }
 
     #endregion
@@ -86,14 +93,14 @@ public class AnimationManager : MonoBehaviour
     /// </summary>
     public void OnTransitionClipEndedCallback()
     {
-        // The idle pose is automatically played after the transition
+        //// The idle pose is automatically played after the transition
 
-        _curPose = _nextPoseAndTransition.nextPose;
+        //_curPose = _nextPoseAndTransition.nextPose;
 
-        // Since all transitions have different durations, we just 
-        // return to the sleep phase once they're done
+        //// Since all transitions have different durations, we just 
+        //// return to the sleep phase once they're done
 
-        _gameManager.ForceSleep();
+        //_gameManager.ForceSleep();
     }
 
     /// <summary>
@@ -101,9 +108,9 @@ public class AnimationManager : MonoBehaviour
     /// </summary>
     public void OnAwakeClipEndedCallback()
     {
-        // Play the previously registered pose after the transition
+        //// Play the previously registered pose after the transition
 
-        _characterAnim.Play(_curPose.name);
+        //_characterAnim.Play(_curPose.name);
     }
 
     #endregion
@@ -115,13 +122,25 @@ public class AnimationManager : MonoBehaviour
     /// </summary>
     private void OnSleepWarningCallback()
     {
-        // TODO : Play warning anim
+        //// TODO : Play warning anim
 
-        if (!_isWarning)
-        {
-            _isWarning = true;
-            _characterAnim.Play(_warningClip.name);
-        }
+        //if (!_isWarning)
+        //{
+        //    _isWarning = true;
+        //    _characterAnim.Play(_warningClip.name);
+        //}
+    }
+
+    /// <summary>
+    /// Called when the monster enters the sleep phase
+    /// </summary>
+    private void OnEnterSleepCallback()
+    {
+        // For the jam, we'll just make a fade since we don't have the animations
+
+        _curPose = _nextPoseAndTransition.nextPose;
+        _characterAnim.Play(_curPose.name);
+        _sceneFader.FadeIn(.5f, _sceneFader.DefaultFadeInGradient);
     }
 
     /// <summary>
@@ -129,6 +148,29 @@ public class AnimationManager : MonoBehaviour
     /// </summary>
     private void OnEnterAwakeCallback()
     {
+        // For the jam, we'll just make a fade since we don't have the animations
+
+        PoseSelection sel = null;
+
+        foreach (PoseSelection ps in _posesSelections)
+        {
+            if (ps.PoseClip == _curPose)
+            {
+                sel = ps;
+                break;
+            }
+        }
+
+        if (sel == null)
+        {
+            print($"Error : the pose \'{_curPose.name}\' isn't referenced in the PoseSelections.");
+            return;
+        }
+
+        _nextPoseAndTransition = sel.GetRandomNextTransitionAndNextPose();
+        _sceneFader.FadeOut(.5f, _sceneFader.DefaultFadeOutGradient, null);
+        return;
+
         _isWarning = false;
         int rand = UnityEngine.Random.Range(0, 2);
 
