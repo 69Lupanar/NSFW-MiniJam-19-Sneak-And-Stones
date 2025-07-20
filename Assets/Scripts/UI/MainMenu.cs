@@ -74,13 +74,13 @@ public class MainMenu : MonoBehaviour
         _menuAnim.Play(_toMainAnim.name);
     }
 
-    ///// <summary>
-    ///// Called by the Quit button
-    ///// </summary>
-    //public void OnQuitBtn()
-    //{
-    //    Application.Quit();
-    //}
+    /// <summary>
+    /// Called by the Quit button
+    /// </summary>
+    public void OnQuitBtn()
+    {
+        Application.Quit();
+    }
 
     #endregion
 }
